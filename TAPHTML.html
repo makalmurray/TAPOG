@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAP WEBSITE</title>
+<link rel="stylesheet" href="TAPCSS.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+<body>
+<section> <div class="topnav" id="myTopnav">
+  <a onclick="openNav()" class="active">Logout</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+	<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script></section>
+	<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="TAPLOGOUT.html">Logout</a>
+  </div>
+</div>
+<header>
+  <div class="loading loading--full-height"></div>
+  <p id="demo"></p>
+  <script>
+const hour = new Date().getHours(); 
+let greeting;
+if (hour < 18) {
+  greeting = "Good Morning, how can I help you?";
+} else {
+  greeting = "Good Evening, how can I help you?";
+}
+
+document.getElementById("demo").innerHTML = greeting;
+</script>
+  <div class="wrapper">
+    <div class="actions">
+      <button id="start">Talk</button>
+      <button id="end">Reset</button>
+    </div>
+    <div id="transcript"> </div>
+  </div>
+</header>
+<section> 
+  <script>
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
+const transcript_element = document.getElementById("transcript");
+const talk_button = document.getElementById("start");
+const end_button = document.getElementById("end");
+
+let p = document.createElement("p");
+transcript_element.appendChild(p);
+
+recognition.addEventListener("result", (e) =>{
+    const transcript = Array.from(e.results)
+    .map(result => result [0])
+    .map(result => result.transcript)
+    .join("");
+    p.textContent = transcript;
+    if(e.results[0].isFinal){
+        p = document.createElement("p")
+        p.textContent = transcript;
+        transcript_element.appendChild(p);
+        p.textContent = "";
+
+        if(transcript.includes("YouTube")){
+            window.open('https://www.youtube.com/')
+        }
+		       if(transcript.includes("weather")){
+            window.open('https://www.theweathernetwork.com/ca/weather/nova-scotia/halifax')
+        }
+		     if(transcript.includes("Drive")){
+            window.open('https://drive.google.com/drive/my-drive')
+        } 
+		     if(transcript.includes("cloud")){
+            window.open('https://drive.google.com/drive/my-drive')
+        } 
+		     if(transcript.includes("School")){
+            window.open('https://everyone.ednet.ns.ca/landing.php')
+        } 
+		     if(transcript.includes("email")){
+            window.open('https://mail.google.com/mail/u/0/?ogbl#inbox')
+        } 
+		  if(transcript.includes("Adobe projects")){
+            window.open('https://creativecloud.adobe.com/cc/')
+        } 
+		 if(transcript.includes("Adobe Cloud")){
+            window.open('https://creativecloud.adobe.com/cc/')
+        } 
+	
+    }	
+});
+
+
+recognition.addEventListener("end", ()=>{
+    end_button.disabled = false;
+    talk_button.disabled = true;
+});
+talk_button.addEventListener("click", () =>{
+    end_button.disabled = false;
+    talk_button.disabled = true;
+    recognition.start();
+});
+end_button.addEventListener("click", () => {
+    end_button.disabled = true;
+    talk_button.disabled = false;
+    recognition.stop();
+});
+
+</script>
+  <script>
+function openNav() {
+  document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.height = "0%";
+}
+</script> 
+</section>
+	    <p style="background-color:#0055ff;color:#0055ff; font-size: 7px;">e</p>
+	<section>
+		<div class="row">
+			<div class="column">
+				<a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">
+		<img src="https://lh3.googleusercontent.com/bEsXiB1yAizktCbjuUNp9Jwxsm5eTIkKytmxR0TeYjamnH7Nn17BE9PcnAVXSoAjUrP9K-5AafW66wzmzuCK5K1AHpdI2IvTcGEQuSKRnexLzsQvTFzEQ7AqE0oQy7UGhY6eatXT8Q=w2400" alt="GMAIL" style="width: 150; height: 50px;" class="center"></a></div>
+			<div class="column">
+				<a href="https://drive.google.com/drive/u/1/my-drive">
+		<img src="https://lh3.googleusercontent.com/lBtXxw3__MdKaSJvIjcVc_MT8j8GglOl48CpZOTRX0jaeJgVLILwJG8r1YeWs5QK1_gN2cb7nNtNpQkdNOmDHQSrPfChQI9C__6L1LbiSej8hvvRNC80mfS9FWg9c11lVXCHrOagVA=w2400" alt="DRIVE" style="width: 150; height: 50px;" class="center"></a></div>
+			<div class="column">
+				<a href="https://classroom.google.com/"> 
+		<img src="https://lh3.googleusercontent.com/eqvwxHuCIInoB6C0HF5NG3aq6LdGgLCkM2USacFCekaD-MkAe-FHcCr95SrpVZrkpoJzta6WKv84KrLs8_oa8aGOhOzgt5rRh9QK_ImJPm2cvu-0zo8mM-XZoKWdHHVdzeYR7hvK6g=w2400" alt="CLASSROOM" style="width: 150; height: 50px;" class="center"></a></div>
+			<div class="column">
+				<a href="https://nsvs.ednet.ns.ca/nsps/nsps39/">
+		<img src="https://lh3.googleusercontent.com/bqLAqZJ0bhWXuO-p5aZCm4tda0IcvjHKtzd7qJQzUAL1Tt8vXgb-IjnoGuptqRGZ122NF8ujH7KIFGryKYHxl2txT8fJoTtKMKe6ghtzcyyhDkvh1DJ8_mqX8dPd625I6jqZ8VYFjg=w2400" alt="MOODLE" style="width: 150; height: 50px;" class="center"></a></div>
+			<div class="column">
+				<a href="https://sishrsb.ednet.ns.ca/guardian/home.html">
+		<img src="https://lh3.googleusercontent.com/9mUf3tCf2izBrqKR03dNaT7NwYnoZ9h3cnSAzqn15BkQFsFHZ-igquEQ2OsCNG4I2egW3KkYvGbacU1X9jdiaae--Ip73foCRKX-nqgc8gv65LlBo6fIV_QSDOKAsf4Ihcm97y2rGg=w2400" alt="POWERSCHOOL" style="width: 150; height: 50px;" class="center"></a></div>
+			<div class="column">
+				<a href="https://app.myblueprint.ca/student/dashboard">
+		<img src="https://lh3.googleusercontent.com/wMx2kZcC-pj1Gi9kQOSADvtzAlZbC-wEDLx2C1EEYMEojlbK3ZQFnQOfUSicxBt9_7LkE5otTprWq2cXgQ9ZvkAr81OfnyTDO1YKkhPQ73zpRGrqs3BnQktw7XMyJjGbnrDPaL7TGQ=w2400" alt="MYBLUEPRINT" style="width: 150; height: 50px;" class="center"></a></div>
+			<div class="column">
+				<a href="https://nshh.ednet.ns.ca/?direct=true">
+		<img src="https://lh3.googleusercontent.com/spjhCnLDJ7n3GwBSRMiXHACtKdAk_Wt6hSQcQT4yYvq4yC-max9mTSYpqg29HNcPtNfIg9-7IOauzGaqFRYw2tReaci7BkTvHZ6h7nfHwBgvTbVh2fFXwtbDLZ_Yep3kALyG9Yx2OQ=w2400" alt="HOMEWORKHUB" style="width: 50; height: 50px;" class="center"></a></div>
+		<div class="column">
+			<a href="https://github.com/">
+		<img src="https://lh3.googleusercontent.com/qIKcziwFKIg07TKhsMJ1_RD1uSFNoqgpnv_QiJpVPHnIVWBB_da2ekYT2BcQUixz5dP9nPaEMPC1ig1DG2synd2Uwmt-ZdFzFi2bupeFuKIBF23jOafUSo3NahNRL-xMvciP02uLJQ=w2400" alt="GITHUB" style="width: 150; height: 50px;" class="center"></a></div></div>
+		
+	</section>
+	<p style="background-color:#0055ff;color:#0055ff; font-size: 7px;">e</p>
+	<footer> <img src="https://lh3.googleusercontent.com/EuSuczCAQDeULo-Hxs8ySUPf4tDUt9RDY_IZ5Y305wDD1s9p1ecrp0Czf3CjmGqwB3BUDGtfD9ZvnB04HPaWw-4zyKCA8iJik9GWFOfLJjWt5_i0XQBxf-yk2S-P2zOdMaaxUIEzjQ=w2400" alt="TAP LOGO" style="width: 100px; height: 50px;   display: block; margin-left: auto; margin-right: auto;"></footer>
+</body>
+</html>
